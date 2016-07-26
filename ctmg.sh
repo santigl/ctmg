@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Copyright (c) 2014 Laurent Ghigonis <laurent@gouloum.fr>
 #
@@ -125,7 +125,7 @@ n|new)
 	do_new
 	echo "[*] Created $container_path of size ${container_size}MB"
 	echo "[*] Open and mounted"
-	break;;
+	;;
 d|del|delete)
 	[[ $# -ne 2 ]] && fatal_usage
 	shift && readarg_container $1
@@ -133,26 +133,26 @@ d|del|delete)
 	do_close && true
 	do_delete
 	echo "[*] Deleted $container_path"
-	break;;
+	;;
 c|close)
 	[[ $# -ne 2 ]] && fatal_usage
 	shift && readarg_container $1
 	do_close
 	echo "[*] Closed and unmounted $mount_path"
-	break;;
+	;;
 l|list)
 	[[ $# -ne 1 ]] && fatal_usage
 	do_list
-	break;;
+	;;
 help|-h)
 	usage
-	break;;
+	;;
 *)
 	[[ $# -lt 1 ]] && fatal_usage
 	[[ $1 == "open" || $1 == "o" ]] && shift
 	readarg_container $1
 	do_open 1
 	echo "[*] Opened and mounted $mount_path"
-	break;;
+	;;
 esac
 exit 0
